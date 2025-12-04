@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Desarrollador Junior</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-card {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            background: linear-gradient(135deg, #7ab2f5 0%, #5f9cf3 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .skill-card:hover .skill-dot {
+            background: white;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .tech-tag {
+            transition: all 0.2s ease;
+        }
+        
+        .tech-tag:hover {
+            transform: scale(1.05);
+            background: #1e40af;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full top-0 z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-2xl font-bold bg-gradient-to-r from-blue-900 to-blue-600 bg-clip-text text-transparent">
+                        John Solorzano
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#inicio" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-3 py-2 rounded-lg hover:bg-blue-50">Inicio</a>
+                        <a href="#sobre-mi" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-3 py-2 rounded-lg hover:bg-blue-50">Sobre mí</a>
+                        <a href="#habilidades" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-3 py-2 rounded-lg hover:bg-blue-50">Habilidades</a>
+                        <a href="#proyectos" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium px-3 py-2 rounded-lg hover:bg-blue-50">Proyectos</a>
+                        <a href="#contacto" class="bg-blue-900 text-white px-5 py-2 rounded-lg hover:bg-blue-800 transition-all duration-200 shadow-md hover:shadow-lg">Contacto</a>
+                    </div>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:bg-gray-100">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+                <a href="#inicio" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inicio</a>
+                <a href="#sobre-mi" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sobre mí</a>
+                <a href="#habilidades" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Habilidades</a>
+                <a href="#proyectos" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Proyectos</a>
+                <a href="#contacto" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-28 pb-24 px-4 gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full mix-blend-overlay filter blur-3xl animate-pulse delay-700"></div>
+        </div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center">
+                <div class="inline-block mb-6">
+                    <span class="bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border border-white/30">
+                        👋 Disponible para trabajar
+                    </span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+                    Desarrollador<br/>
+                    <span class="bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">Backend con Django</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+                   Estudiante de Ingeniería de Software especializado en Python y Django, desarrollando aplicaciones web eficientes y bien estructuradas, mientras amplío mi dominio hacia tecnologías Full Stack.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#proyectos" class="bg-white text-blue-900 px-8 py-4 rounded-xl hover:bg-blue-50 transition-all duration-200 font-semibold shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2">
+                        <span>Explorar proyectos</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                    <a href="#contacto" class="glass-effect text-white px-8 py-4 rounded-xl hover:bg-white/20 transition-all duration-200 font-semibold backdrop-blur-md">
+                        Contáctame
+                    </a>
+                </div>
+                <div class="mt-16 flex justify-center gap-6">
+                    <a href="https://github.com/John-Solorzano1" target="_blank" class="glass-effect p-4 rounded-xl hover:bg-white/20 transition-all duration-200 group">
+                        <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/john-jairo-sol%C3%B3rzano-rodriguez-11a55b381/" target="_blank" class="glass-effect p-4 rounded-xl hover:bg-white/20 transition-all duration-200 group">
+                        <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-6-3.113-6 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre-mi" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-block">
+                        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Sobre mí</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                        Construyendo soluciones con código limpio
+                    </h2>
+                    <div class="space-y-4 text-gray-600 text-lg leading-relaxed">
+                        <p>
+                            Actualmente cursando el <strong class="text-gray-900">5to semestre de Ingeniería de Software</strong>, con una clara especialización en desarrollo backend utilizando Python y Django.
+                        </p>
+                        <p>
+                            Mi experiencia incluye la creación de sistemas de gestión medica, APIs RESTful y aplicaciones que resuelven problemas reales. He trabajado con bases de datos relacionales, implementado principios SOLID y sigo prácticas de ingeniería que priorizan estabilidad, mantenibilidad y orden.
+                        </p>
+                        <p>
+                            Busco una oportunidad como <strong class="text-gray-900">desarrollador junior</strong> donde pueda aportar mis habilidades técnicas, continuar aprendiendo y formar parte de un equipo que valore el trabajo bien hecho.
+                        </p>
+                    </div>
+                    <div class="flex gap-4 pt-4">
+                        <div class="bg-blue-50 rounded-xl p-4 flex-1">
+                            <div class="text-3xl font-bold text-blue-900">5to</div>
+                            <div class="text-sm text-gray-600 mt-1">Semestre</div>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-4 flex-1">
+                            <div class="text-3xl font-bold text-blue-900">10+</div>
+                            <div class="text-sm text-gray-600 mt-1">Proyectos</div>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-4 flex-1">
+                            <div class="text-3xl font-bold text-blue-900">100%</div>
+                            <div class="text-sm text-gray-600 mt-1">Compromiso</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl p-8 float-animation">
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-xl p-4 shadow-md">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-900">Clean Code</div>
+                                        <div class="text-sm text-gray-500">Código mantenible</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl p-4 shadow-md">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-900">Best Practices</div>
+                                        <div class="text-sm text-gray-500">SOLID & POO</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl p-4 shadow-md">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-900">Fast Learner</div>
+                                        <div class="text-sm text-gray-500">Aprendizaje continuo</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Stack Tecnológico</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-4">Habilidades & Tecnologías</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Herramientas y tecnologías que domino para crear soluciones eficientes
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Backend Card -->
+                <div class="skill-card bg-white p-8 rounded-2xl border-2 border-gray-100 hover:border-blue-500">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Backend</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Python</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Django</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Django REST Framework</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">API REST</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frontend Card -->
+                <div class="skill-card bg-white p-8 rounded-2xl border-2 border-gray-100 hover:border-blue-500">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Frontend</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">HTML</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">CSS / Tailwind CSS</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">JavaScript</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Responsive Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database Card -->
+                <div class="skill-card bg-white p-8 rounded-2xl border-2 border-gray-100 hover:border-blue-500">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Bases de Datos</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">SQL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">SQL Server</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">PostgreSQL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Diseño de BD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools Card -->
+                <div class="skill-card bg-white p-8 rounded-2xl border-2 border-gray-100 hover:border-blue-500">
+                    <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Herramientas</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Git / GitHub</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">VS Code</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">PyCharm</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Postman</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concepts Card -->
+                <div class="skill-card bg-white p-8 rounded-2xl border-2 border-gray-100 hover:border-blue-500">
+                    <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Conceptos</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">POO</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Principios SOLID</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Clean Code</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Arquitectura MVC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills Card -->
+                <div class="skill-card bg-white p-8 rounded-2xl border-2 border-gray-100 hover:border-blue-500">
+                    <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Soft Skills</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Resolución de problemas</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Trabajo en equipo</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Aprendizaje continuo</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="skill-dot w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <span class="text-gray-700 font-medium">Comunicación efectiva</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Portafolio</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-4">Proyectos Destacados</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Soluciones reales que demuestran mis capacidades técnicas
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="card-hover bg-white rounded-2xl border-2 border-gray-100 overflow-hidden group">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-green-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-20 h-20 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">Sistema de Gestion Médica</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Plataforma para la gestión de citas médicas, historiales clínicos y pacientes. Incluye panel administrativo.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">Python</span>
+                            <span class="tech-tag px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">Django</span>
+                            <span class="tech-tag px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">PostgreSQL</span>
+                        </div>
+                        <a href="https://github.com/HectorRomero18/ProyectoPOO.git" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold group/link">
+                            <span>Ver proyecto</span>
+                            <svg class="w-5 h-5 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="card-hover bg-white rounded-2xl border-2 border-gray-100 overflow-hidden group">
+                    <div class="h-48 bg-gradient-to-br from-red-500 to-red-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-20 h-20 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">Sistema de Inventario</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Aplicación CRUD para control de inventarios con gestión de productos, categorías, proveedores y movimientos de stock.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">Django</span>
+                            <span class="tech-tag px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">PostgreSQL</span>
+                            <span class="tech-tag px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">Tailwind</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold group/link">
+                            <span>Ver proyecto</span>
+                            <svg class="w-5 h-5 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            <!-- Project Card 3 -->
+            <div class="card-hover bg-white rounded-2xl border-2 border-gray-100 overflow-hidden group">
+                <div class="h-48 bg-gradient-to-br from-blue-300 to-blue-500 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-green-400 transition-colors">Aplicación Educativa de Escritura Aérea</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Sistema interactivo que permite a niños que tengan entre 5 a 10 años practicar letras, silabas y numeros usando reconocimiento visual con OpenCV, fomentando aprendizaje intuitivo y dinámico.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-tag px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">Python</span>
+                        <span class="tech-tag px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">OpenCV</span>
+                    </div>
+                    <a href="https://github.com/HectorRomero18/5toSemestreProyecto.git" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold group/link">
+                            <span>Ver proyecto</span>
+                            <svg class="w-5 h-5 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                </div>
+            </div>
+
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Contáctame</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-4">¿Trabajamos juntos?</h2>
+                <p class="text-gray-600 text-lg">
+                    Estoy disponible para oportunidades laborales y colaboraciones
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl border-2 border-gray-100 p-8 md:p-12 shadow-xl">
+                {% if messages %}
+                    <div class="mb-6">
+                        {% for message in messages %}
+                        <div class="p-4 rounded-lg {% if message.tags %} {{ message.tags }} {% endif %}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                <form action="{% url 'contacto' %}" method="POST" class="space-y-6">
+                    {% csrf_token %}
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" required 
+                                   class="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 hover:border-gray-300">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 hover:border-gray-300">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="asunto" class="block text-sm font-semibold text-gray-700 mb-2">Asunto</label>
+                        <input type="text" id="asunto" name="asunto" required 
+                               class="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 hover:border-gray-300">
+                    </div>
+                    <div>
+                        <label for="mensaje" class="block text-sm font-semibold text-gray-700 mb-2">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="6" required 
+                                  class="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 resize-none hover:border-gray-300"></textarea>
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-blue-900 to-blue-700 text-white py-4 px-8 rounded-xl hover:from-blue-800 hover:to-blue-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2">
+                        <span>Enviar mensaje</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="mt-12 pt-8 border-t-2 border-gray-100">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">Email</div>
+                                <div class="font-semibold text-gray-900">johnsolorzano180@email.com</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/John-Solorzano1" target="_blank" class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-200 group">
+                                <svg class="w-6 h-6 text-gray-700 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/john-jairo-sol%C3%B3rzano-rodriguez-11a55b381/" target="_blank" class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-200 group">
+                                <svg class="w-6 h-6 text-gray-700 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-6-3.113-6 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent">John Solorzano</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Desarrollador especializado en Python y Django, creando soluciones web eficientes.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Navegación</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-400 hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#sobre-mi" class="text-gray-400 hover:text-white transition-colors">Sobre mí</a></li>
+                        <li><a href="#habilidades" class="text-gray-400 hover:text-white transition-colors">Habilidades</a></li>
+                        <li><a href="#proyectos" class="text-gray-400 hover:text-white transition-colors">Proyectos</a></li>
+                        <li><a href="#contacto" class="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Conecta</h4>
+                    <div class="flex gap-3 mb-4">
+                        <a href="https://github.com/John-Solorzano1" target="_blank" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all duration-200">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/john-jairo-sol%C3%B3rzano-rodriguez-11a55b381/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all duration-200">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-6-3.113-6 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">johnsolorzano180@email.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2025 John Solorzano. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = 64; // Height of fixed nav
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        let lastScroll = 0;
+        const navbar = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                navbar.classList.remove('shadow-lg');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scroll Down
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scroll Up
+                navbar.style.transform = 'translateY(0)';
+                navbar.classList.add('shadow-lg');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Add animation on scroll for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.card-hover, .skill-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
