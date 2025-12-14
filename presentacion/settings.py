@@ -31,8 +31,6 @@ ALLOWED_HOSTS = [
     '.onrender.com',
     'localhost',] 
 
-ALLOWED_HOSTS = ['*']
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
