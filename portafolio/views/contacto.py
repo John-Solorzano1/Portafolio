@@ -46,7 +46,7 @@ class ContactoView(FormView):
             email_auto = EmailMessage(
                 subject="Hemos recibido tu mensaje",
                 body=mensaje_auto,
-                from_email=settings.DEFAULT_FROM_EMAIL,
+                from_email="John Solorzano <johnsolorzano180@gmail.com>",
                 to=[email] if email else [],
             )
             email_auto.send(fail_silently=False)
