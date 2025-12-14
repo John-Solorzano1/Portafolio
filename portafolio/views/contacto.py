@@ -22,13 +22,14 @@ class ContactoView(FormView):
             f"Email: {email}\n\n"
             f"Mensaje:\n{mensaje}"
         )
-        from_name = f"John Solórzano <{settings.EMAIL_HOST_USER}>"
+        
         try:
             send_mail(
                 subject=f"[Contacto] {asunto}",
                 message= cuerpo,
-                from_email=from_name,
+                from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.CONTACT_EMAIL],
+                reply_to=[email],
                 fail_silently=False,
             )
             
@@ -41,11 +42,11 @@ class ContactoView(FormView):
             )
             
             send_mail(
-            subject="Hemos recibido tu mensaje",
-            message=mensaje_auto,
-            from_email=from_name,
-            recipient_list=[email],    # correo del usuario
-            fail_silently=False,
+                subject="Hemos recibido tu mensaje",
+                message=mensaje_auto,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[email],    # correo del usuario
+                fail_silently=False,
             )
             messages.success(self.request , "Mensaje enviado correctamente.Te contactaré pronto.")
         except Exception as e:
