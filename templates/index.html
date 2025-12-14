@@ -64,8 +64,37 @@
             background: #1e40af;
             color: white;
         }
+        #zwick-alert-container {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .zwick-alert {
+            background-color: #3ad43f; /* verde por defecto */
+            color: white;
+            padding: 15px 25px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            opacity: 1;
+            transition: all 0.5s ease;
+        }
+
+        .zwick-alert.error { background-color: #f44336; }
+        .zwick-alert.info { background-color: #2196F3; }
+        .zwick-alert.warning { background-color: #ff9800; }
+
+        .zwick-alert.hide {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
     </style>
 </head>
+<div id="zwick-alert-container"></div>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full top-0 z-50 border-b border-gray-100">
@@ -531,15 +560,19 @@
             </div>
 
             <div class="bg-white rounded-3xl border-2 border-gray-100 p-8 md:p-12 shadow-xl">
-                {% if messages %}
-                    <div class="mb-6">
-                        {% for message in messages %}
-                        <div class="p-4 rounded-lg {% if message.tags %} {{ message.tags }} {% endif %}">
-                            {{ message }}
+                <!-- {% if messages %}
+                    <div id="alert-container">
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
                         </div>
-                        {% endfor %}
+                    {% endfor %}
                     </div>
-                    {% endif %}
+                {% endif %} -->
+                <div id="django-messages" 
+                    data-messages='{% if messages %}[{% for message in messages %}{"text": "{{ message|escapejs }}", "type": "{{ message.tags }}"}{% if not forloop.last %},{% endif %}{% endfor %}]{% else %}[]{% endif %}'>
+                </div>
+
 
                 <form action="{% url 'contacto' %}" method="POST" class="space-y-6">
                     {% csrf_token %}
@@ -729,6 +762,30 @@
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
+        document.addEventListener('DOMContentLoaded', function () {
+        const zwickContainer = document.getElementById('zwick-alert-container');
+        const messageDiv = document.getElementById('django-messages');
+
+        if (messageDiv) {
+            const messages = JSON.parse(messageDiv.dataset.messages || '[]');
+
+            messages.forEach(msg => {
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'zwick-alert ' + msg.type;
+                alertDiv.innerText = msg.text;
+                zwickContainer.appendChild(alertDiv);
+
+                // Subir al inicio suavemente
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Desaparecer después de 5 segundos
+                setTimeout(() => {
+                    alertDiv.classList.add('hide');
+                    setTimeout(() => alertDiv.remove(), 500);
+                }, 5000);
+            });
+        }
+    });
     </script>
 </body>
 </html>

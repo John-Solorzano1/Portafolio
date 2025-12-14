@@ -3,6 +3,7 @@ from django.views.generic.edit import FormView
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core.mail import EmailMessage
 
 from portafolio.forms.contacto_forms import ContactForm
 
@@ -24,14 +25,16 @@ class ContactoView(FormView):
         )
         
         try:
-            send_mail(
-                subject=f"[Contacto] {asunto}",
-                message= cuerpo,
+            # Enviar mensaje al portafolio
+            email_msg = EmailMessage(
+                subject=f"[Contacto] {asunto}" if asunto else "[Contacto] Nuevo mensaje",
+                body=cuerpo,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[settings.CONTACT_EMAIL],
-                reply_to=[email],
-                fail_silently=False,
+                to=[settings.CONTACT_EMAIL],
+                reply_to=[email] if email else None,
             )
+            email_msg.send(fail_silently=False)
+            
             
             mensaje_auto = (
             "Hola,\n\n"
@@ -41,15 +44,17 @@ class ContactoView(FormView):
             "John Solórzano"
             )
             
-            send_mail(
+            email_auto = EmailMessage(
                 subject="Hemos recibido tu mensaje",
-                message=mensaje_auto,
+                body=mensaje_auto,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[email],    # correo del usuario
-                fail_silently=False,
+                to=[email] if email else [],
             )
+            email_auto.send(fail_silently=False)
+            
             messages.success(self.request , "Mensaje enviado correctamente.Te contactaré pronto.")
         except Exception as e:
+            print("ERROR SEND_MAIL:", e)
             messages.error(self.request, "Ocurrió un error al enviar el mensaje. Intenta otra vez.")
         return super().form_valid(form)
     
